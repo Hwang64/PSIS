@@ -3,7 +3,7 @@ Data Augmentation for Object Detection via Progressive and Selective Instance-Sw
 
 We proposed a simple yet effective data augmentation for object detection, whose core is a progressive and selective instance-switching (PSIS) method for synthetic image generation. The proposed PSIS as data augmentation for object detection benefits several merits, i.e., increase of diversity of samples, keep of contextual coherence in the original images, no requirement of external datasets, and  consideration of instance balance and class importance. Experimental results demonstrate the effectiveness of our PSIS against the existing data augmentation, including horizontal flipping and training time augmentation for FPN, segmentation masks and training time augmentation for Mask R-CNN, multi-scale training strategy for SNIPER, and Context-DA for BlitzNet. The improvement on both object detection and instance segmentation tasks suggest our proposed PSIS has the potential to improve the performance of other applications (i.e., keypoint detection), which will be investigated in future work.
 
-# #PSIS Framework
+## PSIS Framework
 
 <img src="https://github.com/Hwang64/PSIS/blob/master/img/pipeline.jpg">
 
@@ -13,10 +13,12 @@ We proposed a simple yet effective data augmentation for object detection, whose
 ## Results
 
 ### Appling PSIS to State-of-the-art Detectors
+
 We directly employ this dataset to train four state-of-the-art detectors (i.e., [FPN](https://github.com/open-mmlab/mmdetection) , [Mask R-CNN](https://github.com/open-mmlab/mmdetection) , [BlitzNet](https://github.com/dvornikita/blitznet) and [SNIPER](https://github.com/mahyarnajibi/SNIPER)), and report results on test server for comparing with other augmentation methods.
 
 ### FPN
 ×2 means two times training epochs, which is regarded as training-time augmentation.Above results clearly demonstrate our PSIS is superior and complementary to horizontal flipping and training-time augmentation methods.
+
 |Training Sets | Avg.Precision,IOU: | Avg.Precision,Area: |  Avg.Recal,#Det:  |    Avg.Recal,Area:  | 
 |--------|:--------------------:|:---------------------:|:-------------------:|:---------------------:|
 |--------|0.5:0.95 | 0.50 | 0.75| Small |  Med. | Large |   1  |  10   |  100 | Small |  Med. | Large |
