@@ -1,7 +1,7 @@
 # PSIS
 Data Augmentation for Object Detection via Progressive and Selective Instance-Switching
 
-We proposed a simple yet effective data augmentation for object detection, whose core is a progressive and selective instance-switching (PSIS) method for synthetic image generation. The proposed PSIS as data augmentation for object detection benefits several merits, i.e., increase of diversity of samples, keep of contextual coherence in the original images, no requirement of external datasets, and  consideration of instance balance and class importance. Experimental results demonstrate the effectiveness of our PSIS against the existing data augmentation, including horizontal flipping and training time augmentation for FPN, segmentation masks and training time augmentation for Mask R-CNN, multi-scale training strategy for SNIPER, and Context-DA for BlitzNet. The improvement on both object detection and instance segmentation tasks suggest our proposed PSIS has the potential to improve the performance of other applications (i.e., keypoint detection), which will be investigated in future work.
+We proposed a simple yet effective data augmentation for object detection, whose core is a progressive and selective instance-switching (PSIS) method for synthetic image generation. The proposed PSIS as data augmentation for object detection benefits several merits, i.e., increase of diversity of samples, keep of contextual coherence in the original images, no requirement of external datasets, and  consideration of instance balance and class importance. Experimental results demonstrate the effectiveness of our PSIS against the existing data augmentation, including horizontal flipping and training time augmentation for FPN, segmentation masks and training time augmentation for Mask R-CNN, multi-scale training strategy for SNIPER, and Context-DA for BlitzNet. 
 
 ## PSIS Framework
 
@@ -16,7 +16,8 @@ We proposed a simple yet effective data augmentation for object detection, whose
 
 We directly employ this dataset to train four state-of-the-art detectors (i.e., [FPN](https://github.com/open-mmlab/mmdetection) , [Mask R-CNN](https://github.com/open-mmlab/mmdetection) , [BlitzNet](https://github.com/dvornikita/blitznet) and [SNIPER](https://github.com/mahyarnajibi/SNIPER)), and report results on test server for comparing with other augmentation methods.
 
-### FPN
+#### FPN
+
 ×2 means two times training epochs, which is regarded as training-time augmentation and * indicates no horizontal fliping. Above results clearly demonstrate our PSIS is superior and complementary to horizontal flipping and training-time augmentation methods.
 
 |Training Sets | AP@0.50:0.95 | AP@0.50 | AP@0.75| AP@Small | AP@Med. | AP@Large |  AR@1 | AR@10 | AR@100 | AR@Small | AR@Med. | AR@Large  | 
@@ -28,13 +29,36 @@ We directly employ this dataset to train four state-of-the-art detectors (i.e., 
 | ori×2  |  39.4   | 60.7 | 43.0 |  21.1  |  43.6 |  52.1 | 32.5 | 51.0  | 53.4 |  33.6 |  57.6 |  68.6 |
 | psis×2 |  40.2   | 61.1 | 44.2 |  22.3  |  45.7 |  51.6 | 32.6 | 51.2  | 53.6 |  33.6 |  58.9 |  68.8 |
 
-### Mask R-CNN
+#### Mask R-CNN
 
-### BlitzNet
+|Training Sets | AP@0.50:0.95 | AP@0.50 | AP@0.75| AP@Small | AP@Med. | AP@Large |  AR@1 | AR@10 | AR@100 | AR@Small | AR@Med. | AR@Large  | 
+|--------------|:------------:|--------:|:------:|:--------:|:-------:|:--------:|:-----:|:-----:|:------:|:--------:|:-------:|:----:|
+|   ori  |  39.4   | 61.0 | 43.3 |  23.1  | 43.7  |  51.3 | 32.3 | 51.5  | 54.3 |  34.9 |  58.7 |  68.5 |
+|  psis  |  40.7   | 61.8 | 44.5 |  23.4  | 45.2  |  53.0 | 33.3 | 52.8  | 55.4 |  35.5 |  59.7 |  70.3 |
+| ori×2  |  40.4   | 61.6 | 44.2 |  22.3  |  44.8 |  52.9 | 33.1 | 52.0  | 54.5 |  34.7 |  58.8 |  69.5 |
+| psis×2 |  41.2   | 62.5 | 45.4 |  23.7  |  46.0 |  53.6 | 33.4 | 52.9  | 55.5 |  36.2 |  60.0 |  70.3 |
 
-### SNIPER
+#### BlitzNet
+
+|Training Sets | AP@0.50:0.95 | AP@0.50 | AP@0.75| AP@Small | AP@Med. | AP@Large | 
+|--------------|:------------:|--------:|:------:|:--------:|:-------:|:--------:|
+|   ori  |  27.3   | 46.0 | 28.1 |  10.7.4  | 26.8  |  46.0 | 
+|   [Context-DA](https://github.com/dvornikita/context_aug)  |  28.0   | 46.7 | 28.9 |  10.7  | 27.8.2  |  47.0 |
+|  psis  |  30.8   | 50.0 | 32.2 |  12.6  | 31.0  |  50.2 | 
+
+#### SNIPER
+
+|Training Sets | AP@0.50:0.95 | AP@0.50 | AP@0.75| AP@Small | AP@Med. | AP@Large |  AR@1 | AR@10 | AR@100 | AR@Small | AR@Med. | AR@Large  | 
+|--------------|:------------:|--------:|:------:|:--------:|:-------:|:--------:|:-----:|:-----:|:------:|:--------:|:-------:|:----:|
+|   ori  |  43.4   | 62.8 | 48.8 |  27.4  | 45.2  |  56.2 | N/A | N/A  | N/A |  N/A |  N/A |  N/A |
+|  psis  |  44.2   | 63.5 | 49.3 |  29.3  | 46.2  |  57.1 | 35.0 | 60.1  | 65.9 |  50.4 |  70.4 |  78.0 |
+
+### Generalization to Instance Segmentation
+
+We verify the generalization ability of our PSIS on instance segmentation task of MS COCO 2017.
 
 ### Examples of Synthetic Images Generated by our IS
+
 Here we show some examples of synthetic images generated by our IS strategy. The new (switched) instances are denoted in red boxes, and our instance-switching strategy can clearly preserve contextual coherence in the original images.
 <img src="https://github.com/Hwang64/PSIS/blob/master/img/examples.jpg">
 
