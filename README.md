@@ -17,12 +17,12 @@ We proposed a simple yet effective data augmentation for object detection, whose
 We directly employ this dataset to train four state-of-the-art detectors (i.e., [FPN](https://github.com/open-mmlab/mmdetection) , [Mask R-CNN](https://github.com/open-mmlab/mmdetection) , [BlitzNet](https://github.com/dvornikita/blitznet) and [SNIPER](https://github.com/mahyarnajibi/SNIPER)), and report results on test server for comparing with other augmentation methods.
 
 ### FPN
-×2 means two times training epochs, which is regarded as training-time augmentation.Above results clearly demonstrate our PSIS is superior and complementary to horizontal flipping and training-time augmentation methods.
+×2 means two times training epochs, which is regarded as training-time augmentation and * indicates no horizontal fliping. Above results clearly demonstrate our PSIS is superior and complementary to horizontal flipping and training-time augmentation methods.
 
-|Training Sets | Avg.Precision,IOU: | Avg.Precision,Area: |  Avg.Recal,#Det:  |    Avg.Recal,Area:  | 
-|--------|:--------------------:|:---------------------:|:-------------------:|:---------------------:|
-|--------|0.5:0.95 | 0.50 | 0.75| Small |  Med. | Large |   1  |  10   |  100 | Small |  Med. | Large |
-|        |:-------:|:----:|:---:|:-----:|:-----:|:-----:|:----:|:-----:|:----:|:-----:|:-----:|:-----:|
+|Training Sets | AP@0.50:0.95 | AP@0.50 | AP@0.75| AP@Small | AP@Med. | AP@Large |  AR@1 | AR@10 | AR@100 | AR@Small | AR@Med. | AR@Large  | 
+|--------------|:------------:|--------:|:------:|:--------:|:-------:|:--------:|:-----:|:-----:|:------:|:--------:|:-------:|:----:|
+|   ori* |  38.1   | 59.1 | 41.3|  20.7 | 42.0  |  51.1 | 31.6 | 49.3  | 51.5 |  31.1 |  55.7 |  66.7 |
+|  psis* |  38.7   | 59.7 | 41.8|  21.6 | 43.0  |  51.7 | 32.0 | 50.0  | 52.3 |  32.3 |  56.4 |  67.6 |
 |   ori  |  38.6   | 60.4 | 41.6|  22.3 | 42.8  |  50.0 | 31.8 | 50.6  | 53.2 |  34.5 |  57.7 |  66.8 |
 |  psis  |  39.8   | 61.0 | 43.4|  22.7 | 44.2  |  52.1 | 32.6 | 51.1  | 53.6 |  34.8 |  59.0 |  68.5 |
 | ori×2  |  39.4   | 60.7 | 43.0 |  21.1  |  43.6 |  52.1 | 32.5 | 51.0  | 53.4 |  33.6 |  57.6 |  68.6 |
