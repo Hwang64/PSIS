@@ -9,6 +9,7 @@ from PIL import Image, ImageFilter,ImageEnhance,ImageOps,ImageFile
 import os
 import cv2
 import re
+import copy 
 
 def PIL2array1C(img):
     '''Converts a PIL image to NumPy Array
@@ -129,12 +130,13 @@ for i in xrange(len(source_ann_list)):
     tar_ann_list = img2anns[tar_img_id]
     for j in xrange(len(src_ann_list)):
         if src_ann_id == src_ann_list[j]:
-            src_ann['image_id'] = tar_psis_id
-            src_ann['id'] = psis_ann_id
+            src_ann_bak = copy.deepcopy(src_ann)
+            src_ann_bak['image_id'] = tar_psis_id
+            src_ann_bak['id'] = psis_ann_id
             psis_ann_id+=1
-            psis_annotation_list.append(src_ann)
+            psis_annotation_list.append(src_ann_bak)
         else:
-            ann = annotations[src_ann_list[j]]
+            ann = copy.deepcopy(annotations[src_ann_list[j]])
             ann['image_id'] = src_psis_id
             ann['id'] = psis_ann_id
             psis_ann_id+=1
@@ -147,23 +149,24 @@ for i in xrange(len(source_ann_list)):
             ymax = int(round(y + h))
             if src_xmin<xmin and src_ymin<ymin and src_xmax>xmax and src_ymax>ymax:
                 print 'Find Attached Instance'
-                ann = annotations[src_ann_list[j]]
+                ann = copy.deepcopy(annotations[src_ann_list[j]])
                 ann['image_id'] = tar_psis_id
                 ann['id'] = psis_ann_id
                 psis_ann_id+=1
                 psis_annotation_list.append(ann)
-    src_img_ann = images[src_img_id]
+    src_img_ann = copy.deepcopy(images[src_img_id])
     src_img_ann['id'] = src_psis_id
     src_img_ann['file_name'] =  src_psis_name
     psis_image_list.append(src_img_ann)
     for j in xrange(len(tar_ann_list)):
         if tar_ann_id == tar_ann_list[j]:
-            tar_ann['image_id'] = src_psis_id
-            tar_ann['id'] = psis_ann_id
+            tar_ann_bak = copy.deepcopy(tar_ann)
+            tar_ann_bak['image_id'] = src_psis_id
+            tar_ann_bak['id'] = psis_ann_id
             psis_ann_id+=1
-            psis_annotation_list.append(tar_ann)
+            psis_annotation_list.append(tar_ann_bak)
         else:
-            ann = annotations[tar_ann_list[j]]
+            ann = copy.deepcopy(annotations[tar_ann_list[j]])
             ann['image_id'] = tar_psis_id
             ann['id'] = psis_ann_id
             psis_ann_id+=1
@@ -176,12 +179,12 @@ for i in xrange(len(source_ann_list)):
             #attached instance update
             if tar_xmin<xmin and tar_ymin<ymin and tar_xmax>xmax and tar_ymax>ymax:
                 print 'Find Attached Instance'
-                ann = annotations[tar_ann_list[j]]
+                ann = copy.deepcopy(annotations[tar_ann_list[j]])
                 ann['image_id'] = src_psis_id
                 ann['id'] = psis_ann_id
                 psis_ann_id+=1
                 psis_annotation_list.append(ann)
-    tar_img_ann = images[tar_img_id]
+    tar_img_ann = copy.deepcopy(images[tar_img_id])
     tar_img_ann['id'] = tar_psis_id
     tar_img_ann['file_name'] =  tar_psis_name
     psis_image_list.append(tar_img_ann)
