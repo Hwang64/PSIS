@@ -1,27 +1,39 @@
 # PSIS
+
 Data Augmentation for Object Detection via Progressive and Selective Instance-Switching
 
 ## Abstract
 
-We proposed a simple yet effective data augmentation for object detection, whose core is a progressive and selective instance-switching (PSIS) method for synthetic image generation. The proposed PSIS as data augmentation for object detection benefits several merits, i.e., increase of diversity of samples, keep of contextual coherence in the original images, no requirement of external datasets, and  consideration of instance balance and class importance. Experimental results demonstrate the effectiveness of our PSIS against the existing data augmentation, including horizontal flipping and training time augmentation for FPN, segmentation masks and training time augmentation for Mask R-CNN, multi-scale training strategy for SNIPER, and Context-DA for BlitzNet. 
+We proposed a simple yet effective data augmentation for object detection, whose core is a progressive and selective instance-switching (PSIS) method for synthetic image generation. The proposed PSIS as data augmentation for object detection benefits several merits, i.e., increase of diversity of samples, keep of contextual coherence in the original images, no requirement of external datasets, and  consideration of instance balance and class importance. Experimental results demonstrate the effectiveness of our PSIS against the existing data augmentation, including horizontal flipping and training time augmentation for FPN, segmentation masks and training time augmentation for Mask R-CNN, multi-scale training strategy for SNIPER, and Context-DA for BlitzNet. The experiments are conducted on the challenging MS COCO benchmark, and results demonstrate our PSIS brings clear improvement over various state-of-the-art detectors
 
 ## Framework
 
 <img src="https://github.com/Hwang64/PSIS/blob/master/img/pipeline.jpg">
 
+## Machine configurations
+
+- OS: Linux 16.02
+- GPU: TiTan 1080 Ti
+- CUDA: version 8.0
+- CUDNN: version 5.1
+
+Slight changes may not results instabilities
+
 ## Synthetic Image Generation
+
+In this part, we provide the code for synthetic image generation by taking MS COCO 2017 training set as benchmark. We first generate the instance masks for the images in the training set. Then we use the methods describe in Section 3.1 in the paper to generate the  quadruple. At last, depending on the quadruple, we generate the synthetic images by switching the instance.
 
 ### Instance Mask Generation
 
-Use the code ```extract_mask.m``` to generate instance mask for each instance in MS COCO 2017 training dataset.
+Use the code ```extract_mask.m``` to generate instance mask for the images in MS COCO 2017 training dataset.
 
-### Annotation Pair Generation
+### Quadruple Generation
 
-Use the code ```extract_annotation_pair.py``` to generate annotation pair for each category which satisfy the conditions. We also provide the Omega_uni and Omega_equ in ```dataset``` which follow the instance distribution in the paper.
+Use the code ```extract_annotation_pair.py``` to generate quadruple for each category which satisfy the conditions. The ouput quadruple will saved in a txt file. We also provide the Omega_uni and Omega_equ in ```dataset``` which follow the instance distribution in the paper.
 
 ### Synthetic Image and Annotation Generation
 
-At last, use the code ```instance_switch.py``` to generate the corresponding images. Meanwhile, the corresponding annotation file will also be generated.
+At last, use the code ```instance_switch.py``` to generate the corresponding images depending on the input quadruple. Meanwhile, the corresponding annotation file will also be generated.
 
 ## Results
 
