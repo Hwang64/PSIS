@@ -35,6 +35,10 @@ Use the code ```extract_annotation_pair.py``` to generate quadruple for each cat
 
 At last, use the code ```instance_switch.py``` to generate the corresponding images depending on the input quadruple. Meanwhile, the corresponding annotation file will also be generated.
 
+### Class Imbalance Loss
+
+The code for class imbalance loss is in ```\class_imbalance_loss``` directory, please refer to the ```\class_imbalance_loss\README.md``` for detail using.
+
 ## Results
 
 ### Applying PSIS to State-of-the-art Detectors
