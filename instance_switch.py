@@ -10,6 +10,7 @@ import os
 import cv2
 import re
 import copy 
+import progressbar
 
 def PIL2array1C(img):
     '''Converts a PIL image to NumPy Array
@@ -71,7 +72,8 @@ ann2ann=dict(zip(source_ann_list,target_ann_list))
 f.close()
 print 'Read Done'
 #Swichting instance and update annotation file
-for i in xrange(len(source_ann_list)):
+bar=progressbar.ProgressBar()
+for i in bar(range(len(source_ann_list))):
     #prepare image and mask id
     src_ann_id=source_ann_list[i]
     src_img_id=ann2img[src_ann_id]
@@ -149,7 +151,6 @@ for i in xrange(len(source_ann_list)):
             xmax = int(round(x + w))
             ymax = int(round(y + h))
             if src_xmin<xmin and src_ymin<ymin and src_xmax>xmax and src_ymax>ymax:
-                print 'Find Attached Instance'
                 ann = copy.deepcopy(annotations[src_ann_list[j]])
                 ann['image_id'] = tar_psis_id
                 ann['id'] = psis_ann_id
@@ -180,7 +181,6 @@ for i in xrange(len(source_ann_list)):
             ymax = int(round(y + h))
             #attached instance update
             if tar_xmin<xmin and tar_ymin<ymin and tar_xmax>xmax and tar_ymax>ymax:
-                print 'Find Attached Instance'
                 ann = copy.deepcopy(annotations[tar_ann_list[j]])
                 ann['image_id'] = src_psis_id
                 ann['id'] = psis_ann_id
