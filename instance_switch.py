@@ -133,6 +133,7 @@ for i in xrange(len(source_ann_list)):
             src_ann_bak = copy.deepcopy(src_ann)
             src_ann_bak['image_id'] = tar_psis_id
             src_ann_bak['id'] = psis_ann_id
+            src_ann_bak["bbox"]=[tar_x,tar_y,tar_w,tar_h]
             psis_ann_id+=1
             psis_annotation_list.append(src_ann_bak)
         else:
@@ -163,6 +164,7 @@ for i in xrange(len(source_ann_list)):
             tar_ann_bak = copy.deepcopy(tar_ann)
             tar_ann_bak['image_id'] = src_psis_id
             tar_ann_bak['id'] = psis_ann_id
+            tar_ann_bak["bbox"] = [src_x, src_y, src_w, src_h]
             psis_ann_id+=1
             psis_annotation_list.append(tar_ann_bak)
         else:
