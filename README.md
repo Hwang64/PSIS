@@ -29,11 +29,13 @@ Use the code ```extract_mask.m``` to generate instance mask for the images in MS
 
 ### Quadruple Generation
 
-Use the code ```extract_annotation_pair.py``` to generate quadruple for each category which satisfy the conditions. The ouput quadruple will saved in a txt file. We also provide the Omega_uni and Omega_equ in ```dataset``` which follow the instance distribution in the paper.
+Use the code ```extract_annotation_pair.py``` to generate quadruple for each category which satisfy the conditions. The ouput quadruple will saved in a txt file. We also provide the Omega_uni, Omega_equ and Omega_aug in ```dataset``` which follow the instance distribution in the paper.
 
 ### Synthetic Image and Annotation Generation
 
-At last, use the code ```instance_switch.py``` to generate the corresponding images depending on the input quadruple. Meanwhile, the corresponding annotation file will also be generated.
+At last, use the code ```instance_switch.py``` to generate the corresponding images depending on the input quadruple. Meanwhile, the corresponding annotation file will also be generated. 
+
+For generting images, just modify the ```ANN2ann_FILE``` in file ```instance_switch```(e.g., ```dataset/omega_uni.txt```) and the synthetic images and annotation file will be generated in the corresponding directory.
 
 ### Class Imbalance Loss
 
@@ -54,7 +56,7 @@ We adopt PSIS to FPN by the publicly availabel toolkit. The configuration files 
 |   ori* |  38.1   | 59.1 | 41.3|  20.7 | 42.0  |  51.1 | 31.6 | 49.3  | 51.5 |  31.1 |  55.7 |  66.7 |
 |  psis* |  38.7   | 59.7 | 41.8|  21.6 | 43.0  |  51.7 | 32.0 | 50.0  | 52.3 |  32.3 |  56.4 |  67.6 |
 |   ori  |  38.6   | 60.4 | 41.6|  22.3 | 42.8  |  50.0 | 31.8 | 50.6  | 53.2 |  34.5 |  57.7 |  66.8 |
-|  psis  |  39.8   | 61.0 | 43.4|  22.7 | 44.2  |  52.1 | 32.6 | 51.1  | 53.6 |  34.8 |  59.0 |  68.5 |
+|  psis([model]())  |  39.8   | 61.0 | 43.4|  22.7 | 44.2  |  52.1 | 32.6 | 51.1  | 53.6 |  34.8 |  59.0 |  68.5 |
 | ori×2  |  39.4   | 60.7 | 43.0 |  21.1  |  43.6 |  52.1 | 32.5 | 51.0  | 53.4 |  33.6 |  57.6 |  68.6 |
 | psis×2 |  40.2   | 61.1 | 44.2 |  22.3  |  45.7 |  51.6 | 32.6 | 51.2  | 53.6 |  33.6 |  58.9 |  68.8 |
 
