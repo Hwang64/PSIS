@@ -101,7 +101,7 @@ We verify the generalization ability of our PSIS on instance segmentation task o
 |Training Sets | AP@0.50:0.95 | AP@0.50 | AP@0.75| AP@Small | AP@Med. | AP@Large |  AR@1 | AR@10 | AR@100 | AR@Small | AR@Med. | AR@Large  | 
 |--------------|:------------:|:-------:|:------:|:--------:|:-------:|:--------:|:-----:|:-----:|:------:|:--------:|:-------:|:----:|
 |   ori  |  35.9   | 57.7 | 38.4 |  19.2  | 39.7  |  49.7 | 30.5 | 47.3  | 49.6 |  29.7 |  53.8 |  65.8 |
-|  psis([model(https://drive.google.com/open?id=13kB4zvwR__O9vSGz9cvy4Br3C-mwSTGZ)])  |  36.7   | 58.4 | 39.4 |  19.0  | 40.6  |  50.2 | 31.0 | 48.2  | 50.3 |  29.8 |  54.4 |  66.9 |
+|  psis([model](https://drive.google.com/open?id=13kB4zvwR__O9vSGz9cvy4Br3C-mwSTGZ))  |  36.7   | 58.4 | 39.4 |  19.0  | 40.6  |  50.2 | 31.0 | 48.2  | 50.3 |  29.8 |  54.4 |  66.9 |
 | ori×2  |  36.6   | 58.2 | 39.2 |  18.5  |  40.3 |  50.4 | 31.0 | 47.7  | 49.7 |  29.5 |  53.5 |  66.6 |
 | psis×2 |  37.1   | 58.8 | 39.9 |  19.3  |  41.2 |  50.8 | 31.1 | 47.7  | 50.4 |  30.2 |  54.5 |  67.9 |
 
