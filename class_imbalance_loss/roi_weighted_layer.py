@@ -74,9 +74,9 @@ class RoIWeightedDataLayer(caffe.Layer):
         category_list=[]
         total_num = 0.0
         cls_num=np.zeros((1,81))
-        fjson_src = open('/home/wh/py-faster-rcnn_test/data/coco/annotations/instances_train2017.json', 'r')
+        fjson_src = open('/home/sirius/py-faster-rcnn/data/coco/annotations/instances_train2017.json', 'r')
         dataset_src = json.load(fjson_src)
-        with open(os.path.join('/home/wh/py-faster-rcnn_mask/lib/roi_data_layer/','category.txt')) as f_cls:
+        with open(os.path.join('/home/sirius/py-faster-rcnn/lib/roi_data_layer/','category.txt')) as f_cls:
             for cls_line in f_cls.readlines():
                 cls_line=cls_line.strip("\n")
                 object_list.append(cls_line)
