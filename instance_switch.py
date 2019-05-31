@@ -154,6 +154,7 @@ for i in bar(range(len(source_ann_list))):
                 ann = copy.deepcopy(annotations[src_ann_list[j]])
                 ann['image_id'] = tar_psis_id
                 ann['id'] = psis_ann_id
+                ann["bbox"]=[tar_x-src_x+xmin,tar_y-src_y+ymin,w,h]
                 psis_ann_id+=1
                 psis_annotation_list.append(ann)
     src_img_ann = copy.deepcopy(images[src_img_id])
@@ -184,6 +185,7 @@ for i in bar(range(len(source_ann_list))):
                 ann = copy.deepcopy(annotations[tar_ann_list[j]])
                 ann['image_id'] = src_psis_id
                 ann['id'] = psis_ann_id
+                ann["bbox"]=[src_x-tar_x+xmin,src_y-tar_y+ymin,w,h]
                 psis_ann_id+=1
                 psis_annotation_list.append(ann)
     tar_img_ann = copy.deepcopy(images[tar_img_id])
