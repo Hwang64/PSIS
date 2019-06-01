@@ -37,6 +37,8 @@ At last, use the code ```instance_switch.py``` to generate the corresponding ima
 
 For generting images, just modify the ```ANN2ann_FILE``` in file ```instance_switch```(e.g., ```dataset/omega_uni.txt```) and the synthetic images and annotation file will be generated in the corresponding directory.
 
+Our synthetic images and corresponding annotation files can be downloaded in [Here](https://pan.baidu.com/s/18yuSztomq5CP2mPILTRuyA)(Type the Extraction Code: xapm)
+
 ### Class Imbalance Loss
 
 The code for class imbalance loss is in ```\class_imbalance_loss``` directory, please refer to the ```\class_imbalance_loss\README.md``` for detail using.
@@ -58,7 +60,7 @@ We adopt PSIS to FPN by the publicly availabel toolkit. The configuration files 
 |   ori  |  38.6   | 60.4 | 41.6|  22.3 | 42.8  |  50.0 | 31.8 | 50.6  | 53.2 |  34.5 |  57.7 |  66.8 |
 |  psis([model](https://drive.google.com/open?id=1a5W8CWFQWQaw8TqVutQmCQWzwcRf3YKE))  |  39.8   | 61.0 | 43.4|  22.7 | 44.2  |  52.1 | 32.6 | 51.1  | 53.6 |  34.8 |  59.0 |  68.5 |
 | ori×2  |  39.4   | 60.7 | 43.0 |  21.1  |  43.6 |  52.1 | 32.5 | 51.0  | 53.4 |  33.6 |  57.6 |  68.6 |
-| psis×2 |  40.2   | 61.1 | 44.2 |  22.3  |  45.7 |  51.6 | 32.6 | 51.2  | 53.6 |  33.6 |  58.9 |  68.8 |
+| psis×2 ([Coming Soon]())|  40.2   | 61.1 | 44.2 |  22.3  |  45.7 |  51.6 | 32.6 | 51.2  | 53.6 |  33.6 |  58.9 |  68.8 |
 
 ×2 means two times training epochs, which is regarded as training-time augmentation and * indicates no horizontal fliping. Above results clearly demonstrate our PSIS is superior and complementary to horizontal flipping and training-time augmentation methods.
 
@@ -71,7 +73,7 @@ We evaluate PSIS using Mask R-CNN. The configuration files are in the ```configs
 |   ori  |  39.4   | 61.0 | 43.3 |  23.1  | 43.7  |  51.3 | 32.3 | 51.5  | 54.3 |  34.9 |  58.7 |  68.5 |
 |  psis([model](https://drive.google.com/open?id=13kB4zvwR__O9vSGz9cvy4Br3C-mwSTGZ))  |  40.7   | 61.8 | 44.5 |  23.4  | 45.2  |  53.0 | 33.3 | 52.8  | 55.4 |  35.5 |  59.7 |  70.3 |
 | ori×2  |  40.4   | 61.6 | 44.2 |  22.3  |  44.8 |  52.9 | 33.1 | 52.0  | 54.5 |  34.7 |  58.8 |  69.5 |
-| psis×2 |  41.2   | 62.5 | 45.4 |  23.7  |  46.0 |  53.6 | 33.4 | 52.9  | 55.5 |  36.2 |  60.0 |  70.3 |
+| psis×2([Coming Soon]()) |  41.2   | 62.5 | 45.4 |  23.7  |  46.0 |  53.6 | 33.4 | 52.9  | 55.5 |  36.2 |  60.0 |  70.3 |
 
 ×2 means two times training epochs, which is regarded as training-time augmentation. Above results clearly demonstrate our PSIS is superior and complementary to training-time augmentation method.
 
@@ -83,7 +85,7 @@ We evaluate PSIS using Mask R-CNN. The configuration files are in the ```configs
 |--------------|:------------:|:-------:|:------:|:--------:|:-------:|:--------:|
 |   ori  |  27.3   | 46.0 | 28.1 |  10.7  | 26.8  |  46.0 | 
 |   [Context-DA](https://github.com/dvornikita/context_aug)  |  28.0   | 46.7 | 28.9 |  10.7  | 27.8  |  47.0 |
-|  psis  |  30.8   | 50.0 | 32.2 |  12.6  | 31.0  |  50.2 | 
+|  psis([Coming Soon]())  |  30.8   | 50.0 | 32.2 |  12.6  | 31.0  |  50.2 | 
 
 #### SNIPER
 
@@ -92,7 +94,7 @@ We use SNIPER to verify the effectiveness of PSIS under multi-scale training str
 |Training Sets | AP@0.50:0.95 | AP@0.50 | AP@0.75| AP@Small | AP@Med. | AP@Large |  AR@1 | AR@10 | AR@100 | AR@Small | AR@Med. | AR@Large  | 
 |--------------|:------------:|:-------:|:------:|:--------:|:-------:|:--------:|:-----:|:-----:|:------:|:--------:|:-------:|:----:|
 |   ori  |  43.4   | 62.8 | 48.8 |  27.4  | 45.2  |  56.2 | N/A | N/A  | N/A |  N/A |  N/A |  N/A |
-|  psis  |  44.2   | 63.5 | 49.3 |  29.3  | 46.2  |  57.1 | 35.0 | 60.1  | 65.9 |  50.4 |  70.4 |  78.0 |
+|  psis([Coming Soon]())  |  44.2   | 63.5 | 49.3 |  29.3  | 46.2  |  57.1 | 35.0 | 60.1  | 65.9 |  50.4 |  70.4 |  78.0 |
 
 ### Generalization to Instance Segmentation
 
@@ -103,7 +105,7 @@ We verify the generalization ability of our PSIS on instance segmentation task o
 |   ori  |  35.9   | 57.7 | 38.4 |  19.2  | 39.7  |  49.7 | 30.5 | 47.3  | 49.6 |  29.7 |  53.8 |  65.8 |
 |  psis([model](https://drive.google.com/open?id=13kB4zvwR__O9vSGz9cvy4Br3C-mwSTGZ))  |  36.7   | 58.4 | 39.4 |  19.0  | 40.6  |  50.2 | 31.0 | 48.2  | 50.3 |  29.8 |  54.4 |  66.9 |
 | ori×2  |  36.6   | 58.2 | 39.2 |  18.5  |  40.3 |  50.4 | 31.0 | 47.7  | 49.7 |  29.5 |  53.5 |  66.6 |
-| psis×2 |  37.1   | 58.8 | 39.9 |  19.3  |  41.2 |  50.8 | 31.1 | 47.7  | 50.4 |  30.2 |  54.5 |  67.9 |
+| psis×2([Coming Soon]()) |  37.1   | 58.8 | 39.9 |  19.3  |  41.2 |  50.8 | 31.1 | 47.7  | 50.4 |  30.2 |  54.5 |  67.9 |
 
 Above results clearly show PSIS offers a new and complementary way to use instance masks for improving both detection and segmentation performance.
 
