@@ -102,6 +102,17 @@ for i in bar(range(len(source_ann_list))):
     tar_ymin = int(round(tar_y))
     tar_xmax = int(round(tar_x + tar_w))
     tar_ymax = int(round(tar_y + tar_h))
+    #prepare segm coordinate
+    src_cenx = src_x+0.5*src_w
+    src_ceny = src_y+0.5*src_h
+    tar_cenx = tar_x+0.5*tar_w
+    tar_ceny = tar_y+0.5*tar_h
+    th_x_src2tar = src_x+0.5*src_w-tar_x-0.5*tar_w
+    th_y_src2tar = src_y+0.5*src_h-tar_y-0.5*tar_h
+    th_w_src2tar = src_w/tar_w
+    th_h_src2tar = src_h/tar_h
+    src_area = annotations[src_ann_id]['area']
+    tar_area = annotations[tar_ann_id]['area']
     #crop and resize images and masks
     src_image_a = src_image
     tar_image_a = tar_image
@@ -136,6 +147,15 @@ for i in bar(range(len(source_ann_list))):
             src_ann_bak['image_id'] = tar_psis_id
             src_ann_bak['id'] = psis_ann_id
             src_ann_bak["bbox"]=[tar_x,tar_y,tar_w,tar_h]
+            if ann['iscrowd'] == 0:
+                for k in xrange(len(src_ann_bak['segmentation'][0])):
+                    if k%2==0:
+                        src_ann_bak['segmentation'][0][k]=src_ann_bak['segmentation'][0][k]-th_x_src2tar
+                        src_ann_bak['segmentation'][0][k]=round(tar_cenx+(src_ann_bak['segmentation'][0][k]-tar_cenx)/th_w_src2tar,2)
+                    else:
+                        src_ann_bak['segmentation'][0][k]=src_ann_bak['segmentation'][0][k]-th_y_src2tar
+                        src_ann_bak['segmentation'][0][k]=round(tar_ceny+(src_ann_bak['segmentation'][0][k]-tar_ceny)/th_h_src2tar,2)
+                src_ann_bak['area'] = tar_area / th_w_src2tar / th_h_src2tar
             psis_ann_id+=1
             psis_annotation_list.append(src_ann_bak)
         else:
@@ -154,7 +174,16 @@ for i in bar(range(len(source_ann_list))):
                 ann = copy.deepcopy(annotations[src_ann_list[j]])
                 ann['image_id'] = tar_psis_id
                 ann['id'] = psis_ann_id
-                ann['bbox']=[tar_x-src_x+xmin,tar_y-src_y+ymin,w,h]
+                ann['bbox'] = [tar_x-src_x+xmin,tar_y-src_y+ymin,w*tar_w/src_w,h*tar_h/src_h]
+                if ann['iscrowd'] == 0:
+                    for k in xrange(len(ann['segmentation'][0])):
+                        if k%2==0:
+                            ann['segmentation'][0][k]=ann['segmentation'][0][k]-th_x_src2tar
+                            ann['segmentation'][0][k]=round(tar_cenx+(ann['segmentation'][0][k]-tar_cenx)/th_w_src2tar,2)
+                        else:
+                            ann['segmentation'][0][k]=ann['segmentation'][0][k]-th_y_src2tar
+                            ann['segmentation'][0][k]=round(tar_ceny+(ann['segmentation'][0][k]-tar_ceny)/th_h_src2tar,2)
+                    ann['area'] = ann['area'] / th_w_src2tar / th_h_src2tar
                 psis_ann_id+=1
                 psis_annotation_list.append(ann)
     src_img_ann = copy.deepcopy(images[src_img_id])
@@ -167,6 +196,15 @@ for i in bar(range(len(source_ann_list))):
             tar_ann_bak['image_id'] = src_psis_id
             tar_ann_bak['id'] = psis_ann_id
             tar_ann_bak["bbox"] = [src_x, src_y, src_w, src_h]
+            if ann['iscrowd'] == 0:
+                for k in xrange(len(tar_ann_bak['segmentation'][0])):
+                    if k%2==0:
+                        tar_ann_bak['segmentation'][0][k]=tar_ann_bak['segmentation'][0][k]+th_x_src2tar
+                        tar_ann_bak['segmentation'][0][k]=round(src_cenx+(tar_ann_bak['segmentation'][0][k]-src_cenx)*th_w_src2tar,2)     
+                    else:
+                        tar_ann_bak['segmentation'][0][k]=tar_ann_bak['segmentation'][0][k]+th_y_src2tar
+                        tar_ann_bak['segmentation'][0][k]=round(src_ceny+(tar_ann_bak['segmentation'][0][k]-src_ceny)*th_h_src2tar,2)
+                tar_ann_bak['area'] = tar_area * th_w_src2tar * th_h_src2tar
             psis_ann_id+=1
             psis_annotation_list.append(tar_ann_bak)
         else:
@@ -185,7 +223,16 @@ for i in bar(range(len(source_ann_list))):
                 ann = copy.deepcopy(annotations[tar_ann_list[j]])
                 ann['image_id'] = src_psis_id
                 ann['id'] = psis_ann_id
-                ann['bbox']=[src_x-tar_x+xmin,src_y-tar_y+ymin,w,h]
+                ann['bbox'] = [src_x-tar_x+xmin,src_y-tar_y+ymin,w*src_w/tar_w,h*src_h/tar_h]
+                if ann['iscrowd'] == 0:
+                    for k in xrange(len(ann['segmentation'][0])):
+                        if k%2==0:
+                            ann['segmentation'][0][k]=ann['segmentation'][0][k]+th_x_src2tar
+                            ann['segmentation'][0][k]=round(src_cenx+(ann['segmentation'][0][k]-src_cenx)*th_w_src2tar,2)
+                        else:
+                            ann['segmentation'][0][k]=ann['segmentation'][0][k]+th_y_src2tar
+                            ann['segmentation'][0][k]=round(src_ceny+(ann['segmentation'][0][k]-src_ceny)*th_h_src2tar,2)
+                    ann['area'] = ann['area'] * th_w_src2tar * th_h_src2tar
                 psis_ann_id+=1
                 psis_annotation_list.append(ann)
     tar_img_ann = copy.deepcopy(images[tar_img_id])
