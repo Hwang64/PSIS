@@ -37,7 +37,7 @@ At last, use the code ```instance_switch.py``` to generate the corresponding ima
 
 For generting images, just modify the ```ANN2ann_FILE``` in file ```instance_switch```(e.g., ```dataset/omega_uni.txt```) and the synthetic images and annotation file will be generated in the corresponding directory.
 
-Our synthetic images and corresponding annotation files can be downloaded in [Here](https://pan.baidu.com/s/18yuSztomq5CP2mPILTRuyA)(Type the Extraction Code: xapm)
+Our synthetic images and corresponding annotation files can be downloaded in [Here](https://pan.baidu.com/s/1McDAmN_PttTz69SNN-Q2wg)(Type the Extraction Code: wnjx)
 
 ### Class Imbalance Loss
 
